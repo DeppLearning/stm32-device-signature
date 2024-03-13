@@ -100,7 +100,7 @@ pub fn device_id_hex() -> &'static str {
 
     unsafe {
         if DEVICE_ID_STR.as_ptr().read_volatile() == 0 {
-            interrupt::free(|_| {
+            interrupt::free(|| {
                 let hex = b"0123456789abcdef";
                 for (i, b) in device_id().iter().enumerate() {
                     let lo = b & 0xf;
